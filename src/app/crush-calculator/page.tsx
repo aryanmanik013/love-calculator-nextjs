@@ -4,6 +4,10 @@ import React, { useState, useRef } from 'react';
 import { CrushForm, CrushFormData } from './components/CrushForm';
 import { CrushResultCard } from './components/CrushResultCard';
 import { Loader } from '@/components/Loader';
+import NativeAd from '@/components/NativeAd';
+import LeaderboardAd from '@/components/LeaderboardAd';
+import SkyscraperAd from '@/components/SkyscraperAd';
+import MediumRectangleAd from '@/components/MediumRectangleAd';
 import { calculateDetailedCrushScore } from '@/lib/algorithms/crushAlgorithm';
 import { DetailedLoveResponse } from '@/lib/algorithms/loveAlgorithm';
 import styles from '../love-calculator/LoveCalculator.module.scss'; // Reusing main layout styles
@@ -35,66 +39,67 @@ export default function CrushCalculatorPage() {
 
     return (
         <div className={styles.pageContainer}>
-            {/* Ad: Leaderboard (728x90) directly below header */}
-            <div className={styles.adLeaderboard}>
-                <span>Leaderboard Ad (728x90)</span>
-            </div>
+            {/* Top Leaderboard Ad */}
+            <LeaderboardAd />
 
-            <section className={styles.hero}>
-                <h1 className={styles.title} style={{ color: '#FF6B6B' }}>
-                    Crush Calculator
-                </h1>
-                <p className={styles.subtitle}>
-                    Does your crush like you back? Find out if there's a spark!
-                </p>
-            </section>
+            <div className={styles.contentWrapper}>
+                <div className={styles.mainContent}>
+                    <section className={styles.hero}>
+                        <h1 className={styles.title} style={{ color: '#FF6B6B' }}>
+                            Crush Calculator
+                        </h1>
+                        <p className={styles.subtitle}>
+                            Does your crush like you back? Find out if there's a spark!
+                        </p>
+                    </section>
 
-            {/* Ad: Responsive Display between intro and form */}
-            <div className={styles.adResponsive}>
-                <span>Responsive Display Ad</span>
-            </div>
+                    {/* Native Ad Unit between intro and form */}
+                    <NativeAd />
 
-            <div className={styles.formContainer}>
-                <CrushForm onCalculate={handleCalculate} />
-            </div>
+                    <div className={styles.formContainer}>
+                        <CrushForm onCalculate={handleCalculate} />
+                    </div>
 
-            {isCalculating && (
-                <Loader
-                    messages={["Scanning mutual interests...", "Analyzing subtle glances...", "Measuring the spark!"]}
-                    durationMs={2200}
-                    type="crush"
-                />
-            )}
+                    {isCalculating && (
+                        <Loader
+                            messages={["Scanning mutual interests...", "Analyzing subtle glances...", "Measuring the spark!"]}
+                            durationMs={2200}
+                            type="crush"
+                        />
+                    )}
 
-            {resultData && (
-                <div className={styles.resultContainer} ref={resultsRef}>
-                    {showSuccess && (
-                        <div className={styles.successMessage} style={{ backgroundColor: 'rgba(255, 107, 107, 0.1)', color: '#FF6B6B', borderColor: '#FF6B6B' }}>
-                            🔥 Your Crush Match result is ready!
+                    {resultData && (
+                        <div className={styles.resultContainer} ref={resultsRef}>
+                            {showSuccess && (
+                                <div className={styles.successMessage} style={{ backgroundColor: 'rgba(255, 107, 107, 0.1)', color: '#FF6B6B', borderColor: '#FF6B6B' }}>
+                                    🔥 Your Crush Match result is ready!
+                                </div>
+                            )}
+
+                            {/* Ad: Medium Rectangle (300x250) Active Unit */}
+                            <MediumRectangleAd />
+
+                            <CrushResultCard
+                                name1={resultData.name1}
+                                name2={resultData.name2}
+                                result={resultData.detailedResult}
+                            />
+
+                            {/* Ad: Large Rectangle (336x280) placeholder */}
+                            <div className={styles.adLargeRectangle}>
+                                <span style={{ fontSize: '12px', color: '#999' }}>ADVERTISEMENT</span>
+                            </div>
                         </div>
                     )}
-                    {/* Ad: Medium Rectangle (300x250) below form, above results */}
-                    <div className={styles.adMediumRectangle}>
-                        <span>Medium Rectangle (300x250)</span>
-                    </div>
-
-                    <CrushResultCard
-                        name1={resultData.name1}
-                        name2={resultData.name2}
-                        result={resultData.detailedResult}
-                    />
-
-                    {/* Ad: Large Rectangle (336x280) after results */}
-                    <div className={styles.adLargeRectangle}>
-                        <span>Large Rectangle (336x280)</span>
-                    </div>
                 </div>
-            )}
 
-            {/* Ad: Bottom Leaderboard (728x90) before footer */}
-            <div style={{ marginTop: '60px' }} className={styles.adLeaderboard}>
-                <span>Bottom Leaderboard Ad (728x90)</span>
+                <aside className={styles.skyscraperContainer}>
+                    <SkyscraperAd />
+                </aside>
             </div>
+
+            {/* Bottom Leaderboard Ad */}
+            <LeaderboardAd />
         </div>
     );
 }

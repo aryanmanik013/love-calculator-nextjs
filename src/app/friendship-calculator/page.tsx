@@ -4,6 +4,10 @@ import React, { useState, useRef } from 'react';
 import { FriendshipForm, FriendshipFormData } from './components/FriendshipForm';
 import { FriendshipResultCard } from './components/FriendshipResultCard';
 import { Loader } from '@/components/Loader';
+import NativeAd from '@/components/NativeAd';
+import LeaderboardAd from '@/components/LeaderboardAd';
+import SkyscraperAd from '@/components/SkyscraperAd';
+import MediumRectangleAd from '@/components/MediumRectangleAd';
 import { calculateDetailedFriendshipScore } from '@/lib/algorithms/friendshipAlgorithm';
 import { DetailedLoveResponse } from '@/lib/algorithms/loveAlgorithm';
 import styles from '../love-calculator/LoveCalculator.module.scss'; // Reusing main layout styles
@@ -35,66 +39,67 @@ export default function FriendshipCalculatorPage() {
 
     return (
         <div className={styles.pageContainer}>
-            {/* Ad: Leaderboard (728x90) directly below header */}
-            <div className={styles.adLeaderboard}>
-                <span>Leaderboard Ad (728x90)</span>
-            </div>
+            {/* Top Leaderboard Ad */}
+            <LeaderboardAd />
 
-            <section className={styles.hero}>
-                <h1 className={styles.title} style={{ color: '#FF4D6D' }}>
-                    Friendship Calculator
-                </h1>
-                <p className={styles.subtitle}>
-                    How strong is your bond with your BFF? Test your friendship compatibility.
-                </p>
-            </section>
+            <div className={styles.contentWrapper}>
+                <div className={styles.mainContent}>
+                    <section className={styles.hero}>
+                        <h1 className={styles.title} style={{ color: '#FF4D6D' }}>
+                            Friendship Calculator
+                        </h1>
+                        <p className={styles.subtitle}>
+                            How strong is your bond with your BFF? Test your friendship compatibility.
+                        </p>
+                    </section>
 
-            {/* Ad: Responsive Display between intro and form */}
-            <div className={styles.adResponsive}>
-                <span>Responsive Display Ad</span>
-            </div>
+                    {/* Native Ad Unit between intro and form */}
+                    <NativeAd />
 
-            <div className={styles.formContainer}>
-                <FriendshipForm onCalculate={handleCalculate} />
-            </div>
+                    <div className={styles.formContainer}>
+                        <FriendshipForm onCalculate={handleCalculate} />
+                    </div>
 
-            {isCalculating && (
-                <Loader
-                    messages={["Reviewing inside jokes...", "Calculating trust levels...", "Evaluating BFF status..."]}
-                    durationMs={2200}
-                    type="friendship"
-                />
-            )}
+                    {isCalculating && (
+                        <Loader
+                            messages={["Reviewing inside jokes...", "Calculating trust levels...", "Evaluating BFF status..."]}
+                            durationMs={2200}
+                            type="friendship"
+                        />
+                    )}
 
-            {resultData && (
-                <div className={styles.resultContainer} ref={resultsRef}>
-                    {showSuccess && (
-                        <div className={styles.successMessage} style={{ backgroundColor: 'rgba(255, 77, 109, 0.1)', color: '#FF4D6D', borderColor: '#FF4D6D' }}>
-                            👯‍♀️ Your Friendship Score is ready!
+                    {resultData && (
+                        <div className={styles.resultContainer} ref={resultsRef}>
+                            {showSuccess && (
+                                <div className={styles.successMessage} style={{ backgroundColor: 'rgba(255, 77, 109, 0.1)', color: '#FF4D6D', borderColor: '#FF4D6D' }}>
+                                    👯‍♀️ Your Friendship Score is ready!
+                                </div>
+                            )}
+
+                            {/* Ad: Medium Rectangle (300x250) Active Unit */}
+                            <MediumRectangleAd />
+
+                            <FriendshipResultCard
+                                name1={resultData.name1}
+                                name2={resultData.name2}
+                                result={resultData.detailedResult}
+                            />
+
+                            {/* Ad: Large Rectangle (336x280) placeholder */}
+                            <div className={styles.adLargeRectangle}>
+                                <span style={{ fontSize: '12px', color: '#999' }}>ADVERTISEMENT</span>
+                            </div>
                         </div>
                     )}
-                    {/* Ad: Medium Rectangle (300x250) below form, above results */}
-                    <div className={styles.adMediumRectangle}>
-                        <span>Medium Rectangle (300x250)</span>
-                    </div>
-
-                    <FriendshipResultCard
-                        name1={resultData.name1}
-                        name2={resultData.name2}
-                        result={resultData.detailedResult}
-                    />
-
-                    {/* Ad: Large Rectangle (336x280) after results */}
-                    <div className={styles.adLargeRectangle}>
-                        <span>Large Rectangle (336x280)</span>
-                    </div>
                 </div>
-            )}
 
-            {/* Ad: Bottom Leaderboard (728x90) before footer */}
-            <div style={{ marginTop: '60px' }} className={styles.adLeaderboard}>
-                <span>Bottom Leaderboard Ad (728x90)</span>
+                <aside className={styles.skyscraperContainer}>
+                    <SkyscraperAd />
+                </aside>
             </div>
+
+            {/* Bottom Leaderboard Ad */}
+            <LeaderboardAd />
         </div>
     );
 }

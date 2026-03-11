@@ -1,15 +1,15 @@
 import React from 'react';
 import { ToolCard } from '@/components/ToolCard';
 import { siteConfig } from '@/config/site';
+import NativeAd from '@/components/NativeAd';
+import LeaderboardAd from '@/components/LeaderboardAd';
 import styles from './Home.module.scss';
 
 export default function Home() {
     return (
         <div className={styles.home}>
-            {/* Ad: Leaderboard (728x90) directly below header */}
-            <div className={styles.adLeaderboard}>
-                <span>Leaderboard Ad (728x90)</span>
-            </div>
+            {/* Top Leaderboard Ad */}
+            <LeaderboardAd />
 
             <h1 className={styles.title}>
                 Welcome to {siteConfig.name} 💖
@@ -39,15 +39,11 @@ export default function Home() {
                 />
             </div>
 
-            {/* Ad: Multiplex Ad unit below the tool grid */}
-            <div className={styles.adMultiplex}>
-                <span>Multiplex Ad Unit (Content Recommendations)</span>
-            </div>
+            {/* Native Ad Unit below the tool grid */}
+            <NativeAd />
 
-            {/* Ad: Bottom Leaderboard (728x90) before footer */}
-            <div style={{ marginTop: '60px' }} className={styles.adLeaderboard}>
-                <span>Bottom Leaderboard Ad (728x90)</span>
-            </div>
+            {/* Bottom Leaderboard Ad */}
+            <LeaderboardAd />
         </div>
     );
 }
