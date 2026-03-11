@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FriendshipForm, FriendshipFormData } from './components/FriendshipForm';
 import { FriendshipResultCard } from './components/FriendshipResultCard';
 import { Loader } from '@/components/Loader';
@@ -11,16 +11,25 @@ import styles from '../love-calculator/LoveCalculator.module.scss'; // Reusing m
 export default function FriendshipCalculatorPage() {
     const [resultData, setResultData] = useState<{ name1: string; name2: string; detailedResult: DetailedLoveResponse } | null>(null);
     const [isCalculating, setIsCalculating] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const resultsRef = useRef<HTMLDivElement>(null);
 
     const handleCalculate = (data: FriendshipFormData) => {
         setIsCalculating(true);
         setResultData(null);
+        setShowSuccess(false);
 
         // Simulate "Calculating" for viral/premium feel
         setTimeout(() => {
             const detailedResult = calculateDetailedFriendshipScore(data);
             setResultData({ name1: data.name1, name2: data.name2, detailedResult });
             setIsCalculating(false);
+            setShowSuccess(true);
+
+            // Scroll to results
+            setTimeout(() => {
+                resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }, 2200);
     };
 
@@ -58,7 +67,12 @@ export default function FriendshipCalculatorPage() {
             )}
 
             {resultData && (
-                <div className={styles.resultContainer}>
+                <div className={styles.resultContainer} ref={resultsRef}>
+                    {showSuccess && (
+                        <div className={styles.successMessage} style={{ backgroundColor: 'rgba(255, 77, 109, 0.1)', color: '#FF4D6D', borderColor: '#FF4D6D' }}>
+                            👯‍♀️ Your Friendship Score is ready!
+                        </div>
+                    )}
                     {/* Ad: Medium Rectangle (300x250) below form, above results */}
                     <div className={styles.adMediumRectangle}>
                         <span>Medium Rectangle (300x250)</span>

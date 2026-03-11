@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './LoveForm.module.scss';
 
 export interface LoveFormData {
@@ -14,6 +14,7 @@ export interface LoveFormData {
 
 interface LoveFormProps {
     onCalculate: (data: LoveFormData) => void;
+    initialData?: Partial<LoveFormData>;
 }
 
 const zodiacSigns = [
@@ -22,16 +23,31 @@ const zodiacSigns = [
     "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ];
 
-export const LoveForm: React.FC<LoveFormProps> = ({ onCalculate }) => {
-    const [name1, setName1] = useState('');
-    const [name2, setName2] = useState('');
+export const LoveForm: React.FC<LoveFormProps> = ({ onCalculate, initialData }) => {
+    const [name1, setName1] = useState(initialData?.name1 || '');
+    const [name2, setName2] = useState(initialData?.name2 || '');
 
     // Optional fields
-    const [showAdvanced, setShowAdvanced] = useState(false);
-    const [age1, setAge1] = useState('');
-    const [age2, setAge2] = useState('');
-    const [zodiac1, setZodiac1] = useState('');
-    const [zodiac2, setZodiac2] = useState('');
+    const [showAdvanced, setShowAdvanced] = useState(!!(initialData?.age1 || initialData?.age2 || initialData?.zodiac1 || initialData?.zodiac2));
+    const [age1, setAge1] = useState(initialData?.age1 || '');
+    const [age2, setAge2] = useState(initialData?.age2 || '');
+    const [zodiac1, setZodiac1] = useState(initialData?.zodiac1 || '');
+    const [zodiac2, setZodiac2] = useState(initialData?.zodiac2 || '');
+
+    // Sync state if initialData is provided later (e.g. from URL params on mount)
+    useEffect(() => {
+        if (initialData) {
+            if (initialData.name1) setName1(initialData.name1);
+            if (initialData.name2) setName2(initialData.name2);
+            if (initialData.age1) setAge1(initialData.age1);
+            if (initialData.age2) setAge2(initialData.age2);
+            if (initialData.zodiac1) setZodiac1(initialData.zodiac1);
+            if (initialData.zodiac2) setZodiac2(initialData.zodiac2);
+            if (initialData.age1 || initialData.age2 || initialData.zodiac1 || initialData.zodiac2) {
+                setShowAdvanced(true);
+            }
+        }
+    }, [initialData]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DetailedLoveResponse } from '@/lib/algorithms/loveAlgorithm';
 import { ShareButtons } from '@/components/ShareButtons';
 import confetti from 'canvas-confetti';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import styles from '../../love-calculator/components/ResultCard.module.scss'; // Reusing result card styles
 
 interface FriendshipResultCardProps {
@@ -11,6 +13,8 @@ interface FriendshipResultCardProps {
 }
 
 export const FriendshipResultCard: React.FC<FriendshipResultCardProps> = ({ name1, name2, result }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     useEffect(() => {
         if (result.score >= 80) {
@@ -41,10 +45,34 @@ export const FriendshipResultCard: React.FC<FriendshipResultCardProps> = ({ name
         }
     }, [result.score]);
 
-    const shareText = `I just got an ${result.score}% Friendship Score with ${name2}! (${result.title})`;
+    const handleDownloadPdf = async () => {
+        if (!cardRef.current) return;
+        setIsDownloading(true);
+
+        try {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            const canvas = await html2canvas(cardRef.current, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                useCORS: true,
+            });
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+            pdf.save(`Friendship_Score_${name1}_${name2}.pdf`);
+        } catch (error) {
+            console.error('Failed to generate PDF', error);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} ref={cardRef}>
             <h3 className={styles.names}>
                 {name1} 👯‍♀️ {name2}
             </h3>
@@ -65,7 +93,7 @@ export const FriendshipResultCard: React.FC<FriendshipResultCardProps> = ({ name
                 <p style={{ marginTop: '10px' }}><strong>✨ Cosmic Tip:</strong> {result.zodiacTip}</p>
             </div>
 
-            <ShareButtons title="BFF Score" text={shareText} />
+            <ShareButtons onDownloadPdf={handleDownloadPdf} />
         </div>
     );
 };
