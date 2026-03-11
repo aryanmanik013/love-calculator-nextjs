@@ -1,0 +1,177 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.pageContainer {
+    padding: 60px 0;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+
+    .title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        color: $primary;
+        line-height: 1.2;
+        letter-spacing: -1px;
+    }
+
+    .subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        color: $text;
+        margin-top: 15px;
+        opacity: 0.8;
+    }
+}
+
+.adLeaderboard {
+    // 728x90 Leaderboard Display Ad
+    width: 100%;
+    max-width: 728px;
+    min-height: 90px;
+    background: $gray-light;
+    @include flex-center;
+    margin-bottom: 40px;
+    border-radius: $border-radius-sm;
+    border: 1px dashed #ccc;
+
+    span {
+        color: $gray-muted;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
+
+.adResponsive {
+    // Responsive Display Ad
+    width: 100%;
+    min-height: 100px;
+    background: $gray-light;
+    @include flex-center;
+    margin-bottom: 30px;
+    border-radius: $border-radius-sm;
+    border: 1px dashed #ccc;
+
+    span {
+        color: $gray-muted;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}
+
+.adMediumRectangle {
+    // Medium Rectangle (300x250)
+    width: 100%;
+    max-width: 300px;
+    min-height: 250px;
+    background: $gray-light;
+    @include flex-center;
+    margin: 30px auto;
+    border-radius: $border-radius-sm;
+    border: 1px dashed #ccc;
+
+    span {
+        color: $gray-muted;
+        font-size: 10px;
+    }
+}
+
+.adLargeRectangle {
+    // Large Rectangle (336x280)
+    width: 100%;
+    max-width: 336px;
+    min-height: 280px;
+    background: $gray-light;
+    @include flex-center;
+    margin: 40px auto;
+    border-radius: $border-radius-sm;
+    border: 1px dashed #ccc;
+
+    span {
+        color: $gray-muted;
+        font-size: 10px;
+    }
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 500px;
+    background: $white;
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-lg;
+    border: 1px solid rgba($accent, 0.3);
+}
+
+.calculating {
+    text-align: center;
+    margin-top: 50px;
+    animation: fadeIn 0.5s ease-in;
+
+    .heart {
+        font-size: 4rem;
+        animation: pulse 1s infinite;
+    }
+
+    p {
+        margin-top: 15px;
+        color: $text;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+}
+
+.resultContainer {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 40px;
+    animation: slideUp 0.5s ease-out;
+}
+
+// Animations
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

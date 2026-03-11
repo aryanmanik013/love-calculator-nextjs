@@ -1,0 +1,100 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.loaderContainer {
+    @include flex-center;
+    flex-direction: column;
+    margin-top: 40px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba($primary, 0.2);
+    border-top-color: $primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+    }
+}
+
+.spinnerLove::after {
+    content: '❤️';
+}
+
+.spinnerCrush::after {
+    content: '😍';
+    border-top-color: #FF6B6B;
+}
+
+.spinnerFriendship::after {
+    content: '👯‍♀️';
+}
+
+
+.message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text;
+    animation: pulse 1.5s infinite;
+}
+
+.progressBar {
+    width: 100%;
+    max-width: 300px;
+    height: 6px;
+    background: $gray-light;
+    border-radius: $border-radius-pill;
+    margin-top: 15px;
+    overflow: hidden;
+
+    .progressFill {
+        height: 100%;
+        background: linear-gradient(90deg, $primary, $accent);
+        width: 0%;
+        border-radius: $border-radius-pill;
+        transition: width 0.3s ease;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "maxScore": 30,
+        "title": "Just Friends... For Now?",
+        "message": "The algorithm senses a friendly vibe, but not necessarily a romantic spark at this moment. Your energy alignment suggests you probably get along well in group settings, but there might be a lack of direct, mutual attraction.",
+        "advice": "Don't force it! Sometimes the best connections start as slow-burning friendships. Focus on getting to know them without any romantic pressure.",
+        "zodiacTip": "If your signs clash, it just means you have to work a little harder to understand each other's communication styles."
+    },
+    {
+        "maxScore": 60,
+        "title": "Mutual Curiosity",
+        "message": "There's definitely some mutual curiosity here! You likely catch each other's eye or find yourselves naturally gravitating toward one another in social situations. The potential for a spark is absolutely present.",
+        "advice": "It's time to be a little bolder. Try striking up a conversation about a shared interest or asking for their opinion on something. A little direct attention will go a long way.",
+        "zodiacTip": "Your astrological elements suggest you both enjoy playful banter. Lean into lighthearted teasing to test the waters."
+    },
+    {
+        "maxScore": 85,
+        "title": "Serious Chemistry",
+        "message": "The universe is picking up on some serious chemistry! It is highly likely they have noticed you too. Your combined algorithm suggests a strong magnetic pull and overlapping personality traits that make you highly compatible.",
+        "advice": "They are probably just waiting for a sign from you! Drop a few obvious hints or simply ask them to hang out one-on-one. The odds are heavily in your favor.",
+        "zodiacTip": "Your signs align beautifully for romance. Trust your intuition—if you feel a connection, it's real."
+    },
+    {
+        "maxScore": 100,
+        "title": "A Cosmic Crush",
+        "message": "Wow! The spark here is undeniable. Your deterministic score is incredibly high, suggesting immediate strong attraction and high long-term compatibility. This is the definition of a cosmic crush.",
+        "advice": "Stop waiting around and make your move! Connections this strong are rare. Be confident and direct about your feelings.",
+        "zodiacTip": "Your stars are perfectly aligned. This connection has the potential to move quickly and intensely."
+    }
+]

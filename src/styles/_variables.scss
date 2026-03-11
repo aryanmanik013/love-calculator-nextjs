@@ -1,0 +1,31 @@
+// Colors
+$primary: #FF4D6D;
+$primary-light: #ff758f;
+$secondary: #FF8FA3;
+$accent: #FFB3C1;
+$background: #FFF0F3;
+$text: #590D22;
+$white: #FFFFFF;
+$gray-light: #F8F9FA;
+$gray-muted: #adb5bd;
+
+// Typography map (can be used for responsive scaling)
+$font-family-base: var(--font-poppins), sans-serif;
+
+// Layout
+$base-padding: 20px;
+$container-max-width: 1200px;
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+$border-radius-pill: 50px;
+
+// Shadows
+$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 8px 20px rgba(255, 77, 109, 0.15);
+$shadow-lg: 0 20px 40px rgba(255, 77, 109, 0.08);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;

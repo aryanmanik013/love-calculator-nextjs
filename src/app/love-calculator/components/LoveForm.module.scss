@@ -1,0 +1,123 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputWrapper {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: $border-radius-lg;
+    border: 2px solid rgba($accent, 0.4);
+    font-size: 1.1rem;
+    background: $gray-light;
+    outline: none;
+    transition: all $transition-base;
+    box-sizing: border-box;
+    font-family: inherit;
+
+    &:focus {
+        border-color: $primary;
+        background: $white;
+    }
+}
+
+.adSlot {
+    width: 100%;
+    min-height: 60px;
+    background: $gray-light;
+    @include flex-center;
+    border-radius: $border-radius-md;
+    border: 1px dashed $gray-muted;
+
+    span {
+        font-size: 10px;
+        color: $gray-muted;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}
+
+.button {
+    @include button-gradient;
+    width: 100%;
+    padding: 18px;
+    border-radius: $border-radius-lg;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.advancedToggle {
+    background: none;
+    border: none;
+    color: $primary;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: right;
+    margin-top: -10px;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: $accent;
+    }
+}
+
+.advancedFields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background: rgba($primary, 0.05);
+    border-radius: $border-radius-lg;
+    border: 1px dashed rgba($primary, 0.3);
+    animation: fadeIn 0.3s ease-out;
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    label {
+        font-size: 0.85rem;
+        color: $text;
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 12px;
+        border-radius: $border-radius-md;
+        border: 1px solid rgba($accent, 0.3);
+        background: $white;
+        font-size: 0.95rem;
+        outline: none;
+
+        &:focus {
+            border-color: $primary;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

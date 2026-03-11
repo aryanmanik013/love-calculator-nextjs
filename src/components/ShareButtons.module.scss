@@ -1,0 +1,57 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.shareContainer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba($text, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    p {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: $text;
+    }
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.shareButton {
+    padding: 10px 16px;
+    border: none;
+    border-radius: $border-radius-pill;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: $white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+    &.whatsapp {
+        background-color: #25D366;
+    }
+
+    &.twitter {
+        background-color: #1DA1F2;
+    }
+
+    &.copy {
+        background-color: $gray-muted;
+        color: $white;
+    }
+}

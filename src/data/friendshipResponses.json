@@ -1,0 +1,30 @@
+[
+    {
+        "maxScore": 40,
+        "title": "Acquaintances",
+        "message": "You two might run in similar circles or share a few mutual friends, but the deep bonding hasn't quite happened yet. You differ on a lot of fundamental personality traits.",
+        "advice": "Friendships take time. Try finding a common niche interest to bond over, rather than forcing deep conversations too early.",
+        "zodiacTip": "Your differing elements mean you have vastly different ways of recharging. Be mindful of their social battery."
+    },
+    {
+        "maxScore": 70,
+        "title": "Solid Friends",
+        "message": "You have a solid, dependable friendship! You share a good number of laughs and generally have a great time when you hang out. The trust is building steadily.",
+        "advice": "To upgrade this to BFF status, try being a little more vulnerable. Share a secret or rely on them for support during a stressful time.",
+        "zodiacTip": "Your signs suggest you make a great team for activities and adventures. Plan a road trip!"
+    },
+    {
+        "maxScore": 90,
+        "title": "True Besties",
+        "message": "You are true besties! You likely share inside jokes, can communicate with just a look, and deeply understand each other's quirks and flaws. This is a high-quality friendship.",
+        "advice": "Make sure you celebrate this friendship! It's easy to take close friends for granted. Plan a 'friendiversary' or just randomly remind them how much you appreciate them.",
+        "zodiacTip": "Astrologically, you provide incredible emotional support for one another. You balance each other out perfectly."
+    },
+    {
+        "maxScore": 100,
+        "title": "Soul Sisters / Blood Brothers",
+        "message": "An absolutely unbreakable bond. You two are practically siblings at this point. The algorithm dictates near-perfect alignment in humor, loyalty, and mutual respect.",
+        "advice": "Never let them go. Friendships this deep are rarer than romance. Continue being each other's loudest cheerleaders.",
+        "zodiacTip": "Your cosmic connection transcends standard compatibility—you are destined to be in each other's lives."
+    }
+]

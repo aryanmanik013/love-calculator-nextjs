@@ -1,0 +1,74 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 15px 5%;
+    border-bottom: 1px solid rgba($accent, 0.5);
+    @include glassmorphism;
+    box-shadow: 0 2px 10px rgba($primary, 0.05);
+
+    .nav {
+        max-width: $container-max-width;
+        margin: 0 auto;
+        @include flex-between;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        @include mobile {
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $primary;
+        text-decoration: none;
+        letter-spacing: -0.5px;
+        text-align: center;
+
+        .dot {
+            color: $accent;
+        }
+
+        @include mobile {
+            font-size: 1.5rem;
+        }
+    }
+
+    .links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-weight: 600;
+        justify-content: center;
+
+        @include mobile {
+            gap: 10px;
+        }
+
+        .link {
+            color: $text;
+            text-decoration: none;
+            padding: 5px 12px;
+            border-radius: $border-radius-pill;
+            transition: background $transition-fast, color $transition-fast;
+            text-align: center;
+
+            @include mobile {
+                font-size: 0.9rem;
+                padding: 5px 10px;
+            }
+
+            &:hover {
+                background: rgba($primary, 0.1);
+                color: $primary;
+            }
+        }
+    }
+}

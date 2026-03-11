@@ -1,0 +1,29 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.cardLink {
+    text-decoration: none;
+    display: block; // important for link wrapping a block element cleanly
+}
+
+.card {
+    @include card-style;
+    padding: 40px;
+
+    .icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        color: $primary;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .description {
+        color: $text;
+        opacity: 0.8;
+    }
+}
