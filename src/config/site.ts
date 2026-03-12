@@ -2,7 +2,8 @@ export const siteConfig = {
     name: "LoveToolsHub",
     title: "LoveToolsHub – Accurate Love, Crush & Friendship Calculators",
     description: "Discover your true romantic compatibility, analyze your crush's feelings, and test the strength of your friendships with our advanced calculators.",
-    url: "https://lovetoolshub.com",
+    url: "https://lover-tools.netlify.app",
+
     keywords: [
         "love calculator",
         "crush calculator",
