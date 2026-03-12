@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container } from "@/components/Container";
@@ -24,9 +26,59 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: `${siteConfig.name} – Advanced Love & Compatibility Calculators`,
+    title: {
+        default: siteConfig.title,
+        template: `%s | ${siteConfig.name}`,
+    },
     description: siteConfig.description,
+    keywords: siteConfig.keywords,
+    authors: [{ name: "LoveToolsHub Team" }],
+    creator: "LoveToolsHub",
+    metadataBase: new URL(siteConfig.url),
+    alternates: {
+        canonical: "/",
+    },
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: siteConfig.url,
+        title: siteConfig.title,
+        description: siteConfig.description,
+        siteName: siteConfig.name,
+        images: [
+            {
+                url: siteConfig.ogImage,
+                width: 1200,
+                height: 630,
+                alt: siteConfig.name,
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: siteConfig.title,
+        description: siteConfig.description,
+        images: [siteConfig.ogImage],
+        creator: siteConfig.twitter,
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon-16x16.png",
+        apple: "/apple-touch-icon.png",
+    },
 };
+
 
 export default function RootLayout({
     children,
@@ -38,15 +90,37 @@ export default function RootLayout({
             <body className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased`} style={{ background: '#FFF0F3', color: '#590D22' }}>
                 <Header />
                 <Script
+                    id="json-ld"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "WebSite",
+                            "name": siteConfig.name,
+                            "url": siteConfig.url,
+                            "description": siteConfig.description,
+                            "potentialAction": {
+                                "@type": "SearchAction",
+                                "target": `${siteConfig.url}/search?q={search_term_string}`,
+                                "query-input": "required name=search_term_string"
+                            }
+                        })
+                    }}
+                />
+                <Script
                     src="https://pl28896860.effectivegatecpm.com/bb/02/ac/bb02ac3ba5e3c0140206cc60e3cd0ce3.js"
                     strategy="afterInteractive"
                 />
+
                 <main style={{ minHeight: '80vh' }}>
                     <Container>
                         {children}
                     </Container>
                 </main>
                 <Footer />
+                <GoogleAnalytics gaId={siteConfig.analyticsId} />
+
 
                 {/* Adsterra Social Bar */}
                 <Script
